@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RealBuildPOC.Shared.DTOs
 {
-    internal class UserDto
+    public class UserDto
     {
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using Dapper;
+using RealBuildPOC.Shared.DTOs;
 
 namespace RealBuildPOC.UserService.Controller
 {
@@ -18,9 +19,8 @@ namespace RealBuildPOC.UserService.Controller
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            //var users = await _db.QueryAsync<UserDto>("SELECT * FROM Users");
-            //return Ok(users);
-            return Ok("");
+            var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users]");
+            return Ok(users);
         }
     }
 }

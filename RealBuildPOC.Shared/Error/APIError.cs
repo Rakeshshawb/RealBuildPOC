@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RealBuildPOC.Shared.Error
 {
-    internal class APIError
+    class APIError
     {
+
     }
 }
