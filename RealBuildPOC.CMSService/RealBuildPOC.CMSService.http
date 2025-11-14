@@ -1,0 +1,6 @@
+@RealBuildPOC.CMSService_HostAddress = http://localhost:5116
+
+GET {{RealBuildPOC.CMSService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

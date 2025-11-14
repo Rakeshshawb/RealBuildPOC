@@ -1,0 +1,6 @@
+@RealBuildPOC.ProductService_HostAddress = http://localhost:5125
+
+GET {{RealBuildPOC.ProductService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

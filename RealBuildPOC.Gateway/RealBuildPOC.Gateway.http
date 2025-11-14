@@ -1,0 +1,6 @@
+@RealBuildPOC.Gateway_HostAddress = http://localhost:5136
+
+GET {{RealBuildPOC.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
