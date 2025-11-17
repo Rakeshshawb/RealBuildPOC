@@ -19,7 +19,7 @@ namespace RealBuildPOC.UserService.Controller
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users]");
+            var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users23]");
             return Ok(users);
         }
     }
