@@ -14,7 +14,7 @@ namespace RealBuildPOC.UserService.Controller
         public UserController(IDbConnection db)
         {
             _db = db;
-        }
+        } 
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
