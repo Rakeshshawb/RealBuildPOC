@@ -8,7 +8,7 @@ namespace RealBuildPOC.Server.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching", "Cold", "Snow"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching", "Cold", "Snow2"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
