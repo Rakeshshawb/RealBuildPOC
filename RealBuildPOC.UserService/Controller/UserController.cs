@@ -14,12 +14,18 @@ namespace RealBuildPOC.UserService.Controller
         public UserController(IDbConnection db)
         {
             _db = db;
-        } 
+        }
 
-        [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        [HttpGet("get-all")]
+        public IActionResult GetUsers()
         {
-            var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users23]");
+            return Ok(new { Message = "User service is working!" });
+        }
+
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser()
+        {
+            var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users]");
             return Ok(users);
         }
     }
