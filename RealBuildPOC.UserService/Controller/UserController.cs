@@ -28,5 +28,41 @@ namespace RealBuildPOC.UserService.Controller
             var users = await _db.QueryAsync<UserDto>("SELECT * FROM [auth].[Users]");
             return Ok(users);
         }
+
+        [HttpGet("GetCities/{ID}")]
+        public async Task<IActionResult> GetCities(long ID)
+        {
+            try {
+                var parameters = new DynamicParameters();
+                parameters.Add("@ID", ID);
+
+                var cities = await _db.QueryAsync<CityDto>(
+                 "[lookup].[getCities]",  // SP name
+                  parameters,//new { ID=ID },//cann also be added like this
+                 commandType: CommandType.StoredProcedure
+                );
+                if (cities == null || !cities.Any())
+                {
+                    return NotFound(new { status = 404, message = "No cities found for the given ID." });
+                }
+
+                return Ok(new
+                {
+                    status = 200,
+                    message = "Success",
+                    data = cities
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    status = 500,
+                    message = "Internal server error",
+                    error = ex.Message
+                });
+            }
+            
+        }
     }
 }
