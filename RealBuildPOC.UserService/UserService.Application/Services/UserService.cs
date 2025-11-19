@@ -16,6 +16,7 @@ namespace UserService.Application.Services
         public async Task<IEnumerable<UserDto>> GetAllUsers()
         {
             var users = await _repo.GetAllUsersAsync();
+
             return users.Select(u => new UserDto
             {
                 Id = u.Id,

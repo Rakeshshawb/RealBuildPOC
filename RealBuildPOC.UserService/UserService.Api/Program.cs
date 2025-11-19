@@ -1,29 +1,34 @@
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using UserService.Application.Interfaces;
 using UserService.Application.Services;
 using UserService.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers
+// Add services to the container
 builder.Services.AddControllers();
-
-// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DB Connection
-builder.Services.AddTransient<IDbConnection>(sp =>
-    new SqlConnection(builder.Configuration.GetConnectionString("UserDB")));
+// Dapper DB Connection (Scoped per request)
+builder.Services.AddScoped<IDbConnection>(sp =>
+{
+    var connection = new SqlConnection(builder.Configuration.GetConnectionString("UserDB"));
+    // Optionally, open connection immediately
+    // connection.Open();
+    return connection;
+});
 
 // Application services
-builder.Services.AddScoped<UserServiceLayer>();
+builder.Services.AddScoped<IUserService, UserService>();
 
-// Infrastructure
+// Infrastructure (Repository / DI)
 builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 
+// Swagger in Development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -31,4 +36,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
 app.Run();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserService.Application.Services;
+using UserService.Application.Interfaces;
 
-namespace UserService.Api.Controllers
+namespace UserService.Api.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -27,5 +27,19 @@ namespace UserService.Api.Controllers
             if (user == null) return NotFound();
             return Ok(user);
         }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CreateUserRequest req)
+        {
+            var id = await _service.CreateUser(req.FullName, req.Email, req.PasswordHash);
+            return Ok(new { Id = id });
+        }
+    }
+
+    public class CreateUserRequest
+    {
+        public string FullName { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string PasswordHash { get; set; } = "";
     }
 }

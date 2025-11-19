@@ -1,16 +1,17 @@
-﻿namespace UserService.Domain.Entities;
-
-public class User
+﻿namespace UserService.Domain.Entities
 {
-    public int Id { get; private set; }
-    public string FullName { get; private set; }
-    public string Email { get; private set; }
-    public string PasswordHash { get; private set; }
-
-    public User(string fullName, string email, string passwordHash)
+    public class User
     {
-        FullName = fullName;
-        Email = email;
-        PasswordHash = passwordHash;
+        public int Id { get; private set; }
+        public string FullName { get; private set; }
+        public string Email { get; private set; }
+        public string PasswordHash { get; private set; }
+
+        public User(string fullName, string email, string passwordHash)
+        {
+            FullName = fullName;
+            Email = email;
+            PasswordHash = passwordHash;
+        }
     }
 }

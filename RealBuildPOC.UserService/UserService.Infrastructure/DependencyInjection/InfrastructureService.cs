@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using UserService.Application.Interfaces;
 using UserService.Infrastructure.Repositories;
-
 
 namespace UserService.Infrastructure.DependencyInjection
 {

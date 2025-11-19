@@ -16,22 +16,24 @@ namespace UserService.Infrastructure.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            string sql = "SELECT * FROM Users";
+            var sql = "SELECT Id, FullName, Email, PasswordHash FROM Users";
             return await _db.QueryAsync<User>(sql);
         }
 
         public async Task<User?> GetUserByIdAsync(int id)
         {
-            string sql = "SELECT * FROM Users WHERE Id = @Id";
-            return (await _db.QueryAsync<User>(sql, new { Id = id })).FirstOrDefault();
+            var sql = "SELECT Id, FullName, Email, PasswordHash FROM Users WHERE Id=@Id";
+            return await _db.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
         }
 
         public async Task<int> CreateUserAsync(User user)
         {
-            string sql = @"INSERT INTO Users (FullName, Email, PasswordHash)
-                           VALUES (@FullName, @Email, @PasswordHash);
-                           SELECT CAST(SCOPE_IDENTITY() as int)";
-            return await _db.ExecuteScalarAsync<int>(sql, user);
+            var sql = @"INSERT INTO Users (FullName, Email, PasswordHash)
+                        VALUES (@FullName, @Email, @PasswordHash);
+                        SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            var id = await _db.ExecuteScalarAsync<int>(sql, user);
+            return id;
         }
     }
 }
