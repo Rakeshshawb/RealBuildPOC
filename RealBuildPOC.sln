@@ -9,8 +9,6 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "realbuildpoc.client", "real
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.Gateway", "RealBuildPOC.Gateway\RealBuildPOC.Gateway.csproj", "{B4C7DA64-6D30-4987-B65C-F1C9565034F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.UserService", "RealBuildPOC.UserService\RealBuildPOC.UserService.csproj", "{33E68879-49EE-4F27-9B20-CCAEACAF3EE6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.ProductService", "RealBuildPOC.ProductService\RealBuildPOC.ProductService.csproj", "{31B60301-1641-48AC-A87E-2673ED583A3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.AdminSellerService", "RealBuildPOC.AdminSellerService\RealBuildPOC.AdminSellerService.csproj", "{2C51DA3D-9848-4D5B-911D-04C8B249BC4A}"
@@ -20,6 +18,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.CMSService", "RealBuildPOC.CMSService\RealBuildPOC.CMSService.csproj", "{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.Shared", "RealBuildPOC.Shared\RealBuildPOC.Shared.csproj", "{5D51E176-4C77-4DFF-8268-990C0775C27C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Api", "RealBuildPOC.UserService\UserService.Api\UserService.Api.csproj", "{378C0C43-3B6D-493B-A404-35CD0043FF50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Application", "RealBuildPOC.UserService\UserService.Application\UserService.Application.csproj", "{1FFAF63D-47D0-4366-B6A6-79894B2720F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Domain", "RealBuildPOC.UserService\UserService.Domain\UserService.Domain.csproj", "{37040F10-EE1C-41FC-9662-AC3443710DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "RealBuildPOC.UserService\UserService.Infrastructure\UserService.Infrastructure.csproj", "{40CF20F3-6601-4082-9D0F-4083E2C90B8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealBuildPOC.UserService", "RealBuildPOC.UserService", "{5E8E8DD1-6329-464B-83EA-EB55615F337B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +49,6 @@ Global
 		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33E68879-49EE-4F27-9B20-CCAEACAF3EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33E68879-49EE-4F27-9B20-CCAEACAF3EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33E68879-49EE-4F27-9B20-CCAEACAF3EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33E68879-49EE-4F27-9B20-CCAEACAF3EE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,8 +69,30 @@ Global
 		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FFAF63D-47D0-4366-B6A6-79894B2720F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FFAF63D-47D0-4366-B6A6-79894B2720F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FFAF63D-47D0-4366-B6A6-79894B2720F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FFAF63D-47D0-4366-B6A6-79894B2720F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37040F10-EE1C-41FC-9662-AC3443710DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37040F10-EE1C-41FC-9662-AC3443710DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37040F10-EE1C-41FC-9662-AC3443710DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37040F10-EE1C-41FC-9662-AC3443710DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40CF20F3-6601-4082-9D0F-4083E2C90B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40CF20F3-6601-4082-9D0F-4083E2C90B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40CF20F3-6601-4082-9D0F-4083E2C90B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40CF20F3-6601-4082-9D0F-4083E2C90B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{378C0C43-3B6D-493B-A404-35CD0043FF50} = {5E8E8DD1-6329-464B-83EA-EB55615F337B}
+		{1FFAF63D-47D0-4366-B6A6-79894B2720F3} = {5E8E8DD1-6329-464B-83EA-EB55615F337B}
+		{37040F10-EE1C-41FC-9662-AC3443710DF0} = {5E8E8DD1-6329-464B-83EA-EB55615F337B}
+		{40CF20F3-6601-4082-9D0F-4083E2C90B8D} = {5E8E8DD1-6329-464B-83EA-EB55615F337B}
 	EndGlobalSection
 EndGlobal
