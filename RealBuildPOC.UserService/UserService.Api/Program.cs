@@ -21,7 +21,9 @@ builder.Services.AddScoped<IDbConnection>(sp =>
 });
 
 // Application services
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserService, UserService.Application.Services.UserService>();
+
 
 // Infrastructure (Repository / DI)
 builder.Services.AddInfrastructure();
