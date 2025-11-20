@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System.Data;
+using System.Data.Common;
 using UserService.Application.Interfaces;
 using UserService.Domain.Entities;
 
@@ -14,10 +15,19 @@ namespace UserService.Infrastructure.Repositories
             _db = db;
         }
 
+        //public async Task<IEnumerable<User>> GetAllUsersAsync()
+        //{
+        //    var sql = "SELECT Id, FullName, Email, PasswordHash FROM [auth].[Users]";
+        //    return await _db.QueryAsync<User>(sql);
+        //}
+
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            var sql = "SELECT Id, FullName, Email, PasswordHash FROM Users";
-            return await _db.QueryAsync<User>(sql);
+            var sql = @"SELECT ID AS Id,FullName,Email,PasswordHash
+                FROM [auth].[Users]";
+
+            var result = await _db.QueryAsync<User>(sql);
+            return result;
         }
 
         public async Task<User?> GetUserByIdAsync(int id)
