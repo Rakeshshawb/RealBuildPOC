@@ -6,6 +6,18 @@ using UserService.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowAnyOrigin(); // only for development
+        });
+});
+
+
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +42,8 @@ builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 
+app.UseDeveloperExceptionPage();
+
 // Swagger in Development
 if (app.Environment.IsDevelopment())
 {
@@ -37,6 +51,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowReactApp");
 app.MapControllers();
 
 app.Run();

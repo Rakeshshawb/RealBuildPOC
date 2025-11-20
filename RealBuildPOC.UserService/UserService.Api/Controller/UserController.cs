@@ -17,7 +17,10 @@ namespace UserService.Api.Controller
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _service.GetAllUsers());
+            ////return Ok(await _service.GetAllUsers());
+            var users = await _service.GetAllUsers();
+
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
