@@ -4,54 +4,44 @@ using UserService.Application.Interfaces;
 using UserService.Application.Services;
 using UserService.Infrastructure.DependencyInjection;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
-        policy =>
-        {
-            policy.AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowAnyOrigin(); // only for development
-        });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
 });
 
 
-// Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Dapper DB Connection (Scoped per request)
-builder.Services.AddScoped<IDbConnection>(sp =>
-{
-    var connection = new SqlConnection(builder.Configuration.GetConnectionString("UserDB"));
-    // Optionally, open connection immediately
-    // connection.Open();
-    return connection;
-});
 
-// Application services
-//builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserService, UserService.Application.Services.UserService>();
+builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(
+builder.Configuration.GetConnectionString("UserDB")));
 
 
-// Infrastructure (Repository / DI)
+builder.Services.AddScoped<IUserService, UserService.Application.Services.UserService> ();
 builder.Services.AddInfrastructure();
+
 
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
 
-// Swagger in Development
+app.UseCors("AllowAll");
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowReactApp");
-app.MapControllers();
 
+app.MapControllers();
 app.Run();
