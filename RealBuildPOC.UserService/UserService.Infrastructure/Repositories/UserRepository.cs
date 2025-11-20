@@ -23,27 +23,40 @@ namespace UserService.Infrastructure.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            var sql = @"SELECT ID AS Id,FullName,Email,PasswordHash
-                FROM [auth].[Users]";
+            var users = await _db.QueryAsync<User>(
+                "[dbo].[sp_GetDummyUsers]",
+                commandType: CommandType.StoredProcedure
+            );
 
-            var result = await _db.QueryAsync<User>(sql);
-            return result;
+            return users;
         }
 
-        public async Task<User?> GetUserByIdAsync(int id)
+        public async Task<User?> GetUserByIdAsync(long id)
         {
-            var sql = "SELECT Id, FullName, Email, PasswordHash FROM Users WHERE Id=@Id";
-            return await _db.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
+            var user = await _db.QueryFirstOrDefaultAsync<User>(
+                "[dbo].[sp_GetDummyUserById]",
+                new { Id = id },
+                commandType: CommandType.StoredProcedure
+            );
+
+            return user;
         }
 
-        public async Task<int> CreateUserAsync(User user)
+        public async Task<long> CreateUserAsync(User user)
         {
-            var sql = @"INSERT INTO Users (FullName, Email, PasswordHash)
-                        VALUES (@FullName, @Email, @PasswordHash);
-                        SELECT CAST(SCOPE_IDENTITY() as int)";
+            var parameters = new DynamicParameters();
+            parameters.Add("@FullName", user.FullName);
+            parameters.Add("@Email", user.Email);
+            parameters.Add("@PasswordHash", user.PasswordHash);
+            parameters.Add("@NewId", dbType: DbType.Int64, direction: ParameterDirection.Output);
 
-            var id = await _db.ExecuteScalarAsync<int>(sql, user);
-            return id;
+            await _db.ExecuteAsync(
+                "[dbo].[sp_CreateDummyUser]",
+                parameters,
+                commandType: CommandType.StoredProcedure
+            );
+
+            return parameters.Get<long>("@NewId");
         }
     }
 }

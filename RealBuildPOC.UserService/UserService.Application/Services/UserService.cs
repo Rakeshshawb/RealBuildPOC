@@ -38,7 +38,7 @@ namespace UserService.Application.Services
             };
         }
 
-        public async Task<int> CreateUser(string name, string email, string passwordHash)
+        public async Task<long> CreateUser(string name, string email, string passwordHash)
         {
             var user = new User(name, email, passwordHash);
             return await _repo.CreateUserAsync(user);

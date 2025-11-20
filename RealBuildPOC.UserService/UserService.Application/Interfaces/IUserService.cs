@@ -6,6 +6,6 @@ namespace UserService.Application.Interfaces
     {
         Task<IEnumerable<UserDto>> GetAllUsers();
         Task<UserDto?> GetUser(int id);
-        Task<int> CreateUser(string name, string email, string passwordHash);
+        Task<long> CreateUser(string name, string email, string passwordHash);
     }
 }
