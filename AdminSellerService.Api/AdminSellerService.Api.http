@@ -1,0 +1,6 @@
+@AdminSellerService.Api_HostAddress = http://localhost:5101
+
+GET {{AdminSellerService.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
