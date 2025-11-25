@@ -1,14 +1,19 @@
 using Yarp.ReverseProxy;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddReverseProxy()
-.LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
+builder.Services.AddHttpClient("UserService", c =>
+{
+    c.BaseAddress = new Uri("https://localhost:7242/");
+    // Optional: ignore HTTPS certificate during local dev
+    c.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+});
 
 builder.Services.AddControllers();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
@@ -17,16 +22,12 @@ builder.Services.AddCors(options =>
     });
 });
 
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 var app = builder.Build();
 
-
 app.UseCors("AllowReact");
-
 
 if (app.Environment.IsDevelopment())
 {
@@ -34,9 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.MapReverseProxy();
 app.MapControllers();
-
 
 app.Run();
