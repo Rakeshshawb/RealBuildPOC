@@ -12,6 +12,13 @@ builder.Services.AddHttpClient("UserService", c =>
     c.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 });
 
+builder.Services.AddHttpClient("AdminSellerService", c =>
+{
+    c.BaseAddress = new Uri("https://localhost:7065/"); // <-- from your launchSettings
+    c.DefaultRequestHeaders.Accept.Add(
+        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>

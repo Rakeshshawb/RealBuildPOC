@@ -22,10 +22,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(
-builder.Configuration.GetConnectionString("UserDB")));
+builder.Configuration.GetConnectionString("AdminSellerDB")));
 
 
 builder.Services.AddScoped<IAdminSellerService, AdminSellerService.Application.Services.AdminSellerService>();
+builder.Services.AddInfrastructure();
 
 
 
