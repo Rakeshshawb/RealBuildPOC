@@ -6,6 +6,7 @@ namespace AdminSellerService.Application.Interfaces
     
     public interface IAdminSellerRepository
     {
-        Task<AdminSeller?> GetAllOrganization(long id);
+        Task<IEnumerable<AdminSeller>> GetAllOrganization(long id);
+        Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy);   
     }
 }

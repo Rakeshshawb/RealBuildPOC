@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using System.Data;
-using System.Data.Common;
 using AdminSellerService.Application.Interfaces;
 using AdminSellerService.Domain.Entities;
 using AdminSellerService.Application.DTOs;
@@ -16,15 +15,36 @@ namespace AdminSellerService.Infrastructure.Repositories
         }
 
 
-        public async Task<AdminSeller?> GetAllOrganization(long id)
+        public async Task<IEnumerable<AdminSeller>> GetAllOrganization(long id)
         {
-            var AdminSeller = await _db.QueryFirstOrDefaultAsync<AdminSeller>(
+            var AdminSeller = await _db.QueryAsync<AdminSeller>(
                 "[organization].[sp_GetOrganizations]",
-                new { ID = id },
+               new { ID = id == 0 ? (long?)null : id },
                 commandType: CommandType.StoredProcedure
             );
 
             return AdminSeller;
+        }
+
+        public async Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy)
+        {
+            try
+            {
+                var idString = string.Join(",", ids);
+
+                var result = await _db.ExecuteAsync(
+                    "[organization].[sp_DeleteOrganization]",
+                    new { Ids = idString, DeletedBy = deletedBy },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return result; // number of rows affected
+            }
+            catch (Exception ex)
+            {
+                // Any other unexpected errors
+                throw new Exception($"Unexpected error occurred while deleting organizations: {ex.Message}", ex);
+            }
         }
 
     }

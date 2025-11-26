@@ -13,19 +13,19 @@ namespace AdminSellerService.Application.Services
         {
             _repo = repo;
         }
-        public async Task<AdminSellerDtos?> GetAllOrganization(int id)
+        public async Task<IEnumerable<AdminSeller>> GetAllOrganization(int id)
         {
-            var adminSeller = await _repo.GetAllOrganization(id);
-            if (adminSeller == null) return null;
 
-            return new AdminSellerDtos
+            var adminSeller = await _repo.GetAllOrganization(id);
+
+            return adminSeller.Select(adminSeller => new AdminSeller
             {
                 ID = adminSeller.ID,
                 Name = adminSeller.Name,
-                Code=adminSeller.Code,
+                Code = adminSeller.Code,
                 Description = adminSeller.Description,
                 LogoPath = adminSeller.LogoPath,
-                PrimaryEmail = adminSeller.PrimaryEmail ,
+                PrimaryEmail = adminSeller.PrimaryEmail,
                 SecondaryEmail = adminSeller.SecondaryEmail,
                 PrimaryPhone = adminSeller.PrimaryPhone,
                 SecondaryPhone = adminSeller.SecondaryPhone,
@@ -40,11 +40,19 @@ namespace AdminSellerService.Application.Services
                 IsDeleted = adminSeller.IsDeleted,
                 CreatedBy = adminSeller.CreatedBy,
                 CreatedOn = adminSeller.CreatedOn,
-                UpdatedBy= adminSeller.UpdatedBy,
+                UpdatedBy = adminSeller.UpdatedBy,
                 UpdatedOn = adminSeller.UpdatedOn,
                 DeletedBy = adminSeller.DeletedBy,
                 DeletedOn = adminSeller.DeletedOn
-            };
+            });
         }
+
+        public async Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy)
+        {
+            var result = await _repo.SoftDeleteOrganizations( ids, deletedBy);
+
+            return result;
+        }
+
     }
 }

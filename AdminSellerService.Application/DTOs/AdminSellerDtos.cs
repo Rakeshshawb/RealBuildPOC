@@ -38,4 +38,10 @@
         public long? DeletedBy { get; set; }
         public DateTime? DeletedOn { get; set; }
     }
+    public class DeleteOrganizationRequest
+    {
+        public List<long> Ids { get; set; }
+        public long DeletedBy { get; set; }
+    }
+
 }

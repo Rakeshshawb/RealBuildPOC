@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AdminSellerService.Application.Interfaces;
+using AdminSellerService.Application.DTOs;
 
 namespace AdminSellerService.Api.Controllers
 {
@@ -23,5 +24,13 @@ namespace AdminSellerService.Api.Controllers
             return Ok(adminseller);
         }
 
+
+        [HttpPost("DeleteOrganization")]
+        public async Task<IActionResult> SoftDelete([FromBody] DeleteOrganizationRequest request)
+        {
+            var result = await _service.SoftDeleteOrganizations(request.Ids, request.DeletedBy);
+            if (result == 0) return NotFound();
+            return Ok("Deleted successfully");
+        }
     }
 }
