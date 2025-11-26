@@ -14,7 +14,7 @@ export default function Users() {
     const load = async () => {
         try {
             const data = await getAllUsers();
-            setUsers(data);
+            setUsers([data]);
         } catch (err) {
             console.error("Failed:", err);
         }
