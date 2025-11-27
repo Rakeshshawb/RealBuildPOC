@@ -43,18 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminSellerService.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminSellerService.Infrastructure", "AdminSellerService.Infrastructure\AdminSellerService.Infrastructure.csproj", "{E975F0B9-52DA-4510-86EC-12DFC3DBDE52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizationService.Api", "RealBuildPOC.OrganizationService\OrganizationService.Api\OrganizationService.Api.csproj", "{84093B59-7361-4982-B1C8-E7E9A449266B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizationService.Application", "RealBuildPOC.OrganizationService\OrganizationService.Application\OrganizationService.Application.csproj", "{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizationService.Domain", "RealBuildPOC.OrganizationService\OrganizationService.Domain\OrganizationService.Domain.csproj", "{9FC01290-1566-41CC-81DE-BA18FD9DC97C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizationService.Infrastructure", "RealBuildPOC.OrganizationService\OrganizationService.Infrastructure\OrganizationService.Infrastructure.csproj", "{D512E4EC-67D1-4753-929A-82D491984D37}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealBuildPOC (2)", "RealBuildPOC (2)", "{3E631F00-81E7-44E2-9761-23CECF6F5230}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealBuildPOC", "RealBuildPOC", "{4EBBB049-D837-4166-8320-063CE6B986D4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,22 +119,6 @@ Global
 		{E975F0B9-52DA-4510-86EC-12DFC3DBDE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E975F0B9-52DA-4510-86EC-12DFC3DBDE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E975F0B9-52DA-4510-86EC-12DFC3DBDE52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84093B59-7361-4982-B1C8-E7E9A449266B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84093B59-7361-4982-B1C8-E7E9A449266B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84093B59-7361-4982-B1C8-E7E9A449266B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84093B59-7361-4982-B1C8-E7E9A449266B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FC01290-1566-41CC-81DE-BA18FD9DC97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FC01290-1566-41CC-81DE-BA18FD9DC97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FC01290-1566-41CC-81DE-BA18FD9DC97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FC01290-1566-41CC-81DE-BA18FD9DC97C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D512E4EC-67D1-4753-929A-82D491984D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D512E4EC-67D1-4753-929A-82D491984D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D512E4EC-67D1-4753-929A-82D491984D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D512E4EC-67D1-4753-929A-82D491984D37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,10 +136,6 @@ Global
 		{A5B00113-5382-4814-8A30-CF4D74B2933D} = {7BA1373F-D8D0-410D-B268-988CCF72134D}
 		{484A3E59-8571-4AA8-A86B-B1446982FE5E} = {7BA1373F-D8D0-410D-B268-988CCF72134D}
 		{E975F0B9-52DA-4510-86EC-12DFC3DBDE52} = {7BA1373F-D8D0-410D-B268-988CCF72134D}
-		{84093B59-7361-4982-B1C8-E7E9A449266B} = {4EBBB049-D837-4166-8320-063CE6B986D4}
-		{3C094C3D-5DB1-4C7E-9D19-2C7E6E2C894D} = {4EBBB049-D837-4166-8320-063CE6B986D4}
-		{9FC01290-1566-41CC-81DE-BA18FD9DC97C} = {4EBBB049-D837-4166-8320-063CE6B986D4}
-		{D512E4EC-67D1-4753-929A-82D491984D37} = {4EBBB049-D837-4166-8320-063CE6B986D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0B5CB5C-A4E2-4828-823E-D2F6498101BE}

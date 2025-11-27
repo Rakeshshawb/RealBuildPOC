@@ -1,6 +1,0 @@
-@RealBuildPOC.SellerService.Api_HostAddress = http://localhost:5268
-
-GET {{RealBuildPOC.SellerService.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
