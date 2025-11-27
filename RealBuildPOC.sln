@@ -7,17 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.Server", "Real
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "realbuildpoc.client", "realbuildpoc.client\realbuildpoc.client.esproj", "{902902B9-DE99-4A5D-AC75-F8A8106EEC2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.Gateway", "RealBuildPOC.Gateway\RealBuildPOC.Gateway.csproj", "{B4C7DA64-6D30-4987-B65C-F1C9565034F8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.ProductService", "RealBuildPOC.ProductService\RealBuildPOC.ProductService.csproj", "{31B60301-1641-48AC-A87E-2673ED583A3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.AdminSellerService_", "RealBuildPOC.AdminSellerService\RealBuildPOC.AdminSellerService_.csproj", "{2C51DA3D-9848-4D5B-911D-04C8B249BC4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.OrderService_", "RealBuildPOC.OrderService\RealBuildPOC.OrderService_.csproj", "{33D66DC0-4E24-4577-8E2C-17261D016138}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.CMSService", "RealBuildPOC.CMSService\RealBuildPOC.CMSService.csproj", "{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBuildPOC.Shared", "RealBuildPOC.Shared\RealBuildPOC.Shared.csproj", "{5D51E176-4C77-4DFF-8268-990C0775C27C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Api", "RealBuildPOC.UserService\UserService.Api\UserService.Api.csproj", "{378C0C43-3B6D-493B-A404-35CD0043FF50}"
 EndProject
@@ -65,10 +59,6 @@ Global
 		{902902B9-DE99-4A5D-AC75-F8A8106EEC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{902902B9-DE99-4A5D-AC75-F8A8106EEC2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{902902B9-DE99-4A5D-AC75-F8A8106EEC2C}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4C7DA64-6D30-4987-B65C-F1C9565034F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31B60301-1641-48AC-A87E-2673ED583A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,18 +67,10 @@ Global
 		{2C51DA3D-9848-4D5B-911D-04C8B249BC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C51DA3D-9848-4D5B-911D-04C8B249BC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C51DA3D-9848-4D5B-911D-04C8B249BC4A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33D66DC0-4E24-4577-8E2C-17261D016138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33D66DC0-4E24-4577-8E2C-17261D016138}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33D66DC0-4E24-4577-8E2C-17261D016138}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33D66DC0-4E24-4577-8E2C-17261D016138}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A2A02F9-0CEB-48FD-84B2-C200CD61782B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D51E176-4C77-4DFF-8268-990C0775C27C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{378C0C43-3B6D-493B-A404-35CD0043FF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
