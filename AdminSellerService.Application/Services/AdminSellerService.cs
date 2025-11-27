@@ -5,7 +5,7 @@ using AdminSellerService.Domain.Entities;
 
 namespace AdminSellerService.Application.Services
 {
-    public class AdminSellerService : IAdminSellerService   
+    public class AdminSellerService : IAdminSellerService
     {
         private readonly IAdminSellerRepository _repo;
 
@@ -49,9 +49,18 @@ namespace AdminSellerService.Application.Services
 
         public async Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy)
         {
-            var result = await _repo.SoftDeleteOrganizations( ids, deletedBy);
+            var result = await _repo.SoftDeleteOrganizations(ids, deletedBy);
 
             return result;
+        }
+
+
+        public async Task<int> InsertOrganization(long createdBy)
+        {
+            // Call repository to insert data
+            var result = await _repo.InsertOrganization(createdBy);
+
+            return result; // return inserted row count or new ID
         }
 
     }

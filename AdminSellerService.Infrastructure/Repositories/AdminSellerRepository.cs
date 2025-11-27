@@ -6,7 +6,7 @@ using AdminSellerService.Application.DTOs;
 
 namespace AdminSellerService.Infrastructure.Repositories
 {
-    public class  AdminSellerRepository : IAdminSellerRepository
+    public class AdminSellerRepository : IAdminSellerRepository
     {
         private readonly IDbConnection _db;
         public AdminSellerRepository(IDbConnection db)
@@ -35,6 +35,27 @@ namespace AdminSellerService.Infrastructure.Repositories
                 var result = await _db.ExecuteAsync(
                     "[organization].[sp_DeleteOrganization]",
                     new { Ids = idString, DeletedBy = deletedBy },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return result; // number of rows affected
+            }
+            catch (Exception ex)
+            {
+                // Any other unexpected errors
+                throw new Exception($"Unexpected error occurred while deleting organizations: {ex.Message}", ex);
+            }
+        }
+
+        public async Task<int> InsertOrganization(long createdBy)
+        {
+            try
+            {
+                //var idString = string.Join(",", ids);
+
+                var result = await _db.ExecuteAsync(
+                    "[organization].[sp_InsertOrganization]",
+                    //new { Ids = idString, DeletedBy = createdBy },
                     commandType: CommandType.StoredProcedure
                 );
 

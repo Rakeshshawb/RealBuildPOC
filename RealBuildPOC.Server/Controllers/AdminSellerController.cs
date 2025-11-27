@@ -50,5 +50,30 @@ namespace RealBuildPOC.Server.Controllers
         }
 
 
+        public class InsertOrganizationRequest
+        {
+            public List<long> Ids { get; set; }
+            public long DeletedBy { get; set; }
+        }
+
+        [HttpPost("InsertOrganization")]
+        public async Task<IActionResult> InsertOrganization([FromBody] InsertOrganizationRequest request)
+        {
+            var client = _httpClientFactory.CreateClient("AdminSellerService");
+
+            var response = await client.PostAsJsonAsync(
+                $"api/AdminSeller/InsertOrganization",
+                request
+            );
+
+            if (!response.IsSuccessStatusCode)
+                return StatusCode((int)response.StatusCode);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            return Content(result, "application/json");
+        }
+
+
     }
 }

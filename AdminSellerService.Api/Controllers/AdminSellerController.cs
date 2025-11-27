@@ -32,5 +32,17 @@ namespace AdminSellerService.Api.Controllers
             if (result == 0) return NotFound();
             return Ok("Deleted successfully");
         }
+
+        [HttpPost("InsertOrganization")]
+        public async Task<IActionResult> Insert([FromBody] InsertOrganizationRequest request)
+        {
+            var result = await _service.InsertOrganization(request.CreatedBy);
+
+            if (result == 0)
+                return BadRequest("Insert failed");
+
+            return Ok("Inserted successfully");
+        }
+
     }
 }
