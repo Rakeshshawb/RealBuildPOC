@@ -36,7 +36,7 @@ namespace AdminSellerService.Api.Controllers
         [HttpPost("InsertOrganization")]
         public async Task<IActionResult> Insert([FromBody] InsertOrganizationRequest request)
         {
-            var result = await _service.InsertOrganization(request.CreatedBy);
+            var result = await _service.InsertOrganization(request);
 
             if (result == 0)
                 return BadRequest("Insert failed");

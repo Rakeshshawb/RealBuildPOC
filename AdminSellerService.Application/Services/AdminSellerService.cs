@@ -55,10 +55,10 @@ namespace AdminSellerService.Application.Services
         }
 
 
-        public async Task<int> InsertOrganization(long createdBy)
+        public async Task<int> InsertOrganization(InsertOrganizationRequest request)
         {
             // Call repository to insert data
-            var result = await _repo.InsertOrganization(createdBy);
+            var result = await _repo.InsertOrganization(request);
 
             return result; // return inserted row count or new ID
         }

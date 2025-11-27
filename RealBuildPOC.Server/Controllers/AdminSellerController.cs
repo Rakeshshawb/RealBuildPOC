@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace RealBuildPOC.Server.Controllers
 {
@@ -52,27 +53,95 @@ namespace RealBuildPOC.Server.Controllers
 
         public class InsertOrganizationRequest
         {
-            public List<long> Ids { get; set; }
-            public long DeletedBy { get; set; }
+            public string Name { get; set; }                    
+            public string? Code { get; set; }                   
+            public string? Description { get; set; }            
+            public string? LogoPath { get; set; }               
+            public string? PrimaryEmail { get; set; }           
+            public string? SecondaryEmail { get; set; }         
+            public string? PrimaryPhone { get; set; }          
+            public string? SecondaryPhone { get; set; }        
+            public string? Website { get; set; }                
+            public string? AddressLine1 { get; set; }               
+            public string? AddressLine2 { get; set; }              
+            public long? FK_CountryID { get; set; }             
+            public long? FK_StateID { get; set; }               
+            public long? FK_CityID { get; set; }                
+            public string? ZipCode { get; set; }                
+            public bool IsActive { get; set; } = true;          
+            public long? CreatedBy { get; set; }
         }
+
+        public class ClientResponse<T>
+        {
+            public HttpStatusCode Status { get; set; }
+            public string Message { get; set; }
+            public T Data { get; set; }
+        }
+
 
         [HttpPost("InsertOrganization")]
         public async Task<IActionResult> InsertOrganization([FromBody] InsertOrganizationRequest request)
         {
-            var client = _httpClientFactory.CreateClient("AdminSellerService");
+            var clientResponse = new ClientResponse<object>();
 
-            var response = await client.PostAsJsonAsync(
-                $"api/AdminSeller/InsertOrganization",
-                request
-            );
+            try
+            {
+                var client = _httpClientFactory.CreateClient("AdminSellerService");
 
-            if (!response.IsSuccessStatusCode)
-                return StatusCode((int)response.StatusCode);
+                var response = await client.PostAsJsonAsync(
+                    $"api/AdminSeller/InsertOrganization",
+                    request
+                );
 
-            var result = await response.Content.ReadAsStringAsync();
+                // Handle non-success status codes
+                if (!response.IsSuccessStatusCode)
+                {
+                    clientResponse.Status = response.StatusCode;
+                    clientResponse.Message = "Request failed from AdminSellerService";
+                    clientResponse.Data = await response.Content.ReadAsStringAsync();
 
-            return Content(result, "application/json");
+                    return StatusCode((int)response.StatusCode, clientResponse);
+                }
+
+                // Success response
+                var res = await response.Content.ReadAsStringAsync();
+
+                clientResponse.Status = HttpStatusCode.OK;
+                clientResponse.Message = "Insert successful";
+                clientResponse.Data = res;
+
+                return Ok(clientResponse);
+            }
+            catch (HttpRequestException ex)
+            {
+                // Could not connect to service
+                clientResponse.Status = HttpStatusCode.ServiceUnavailable;
+                clientResponse.Message = "AdminSellerService not reachable";
+                clientResponse.Data = ex.Message;
+
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, clientResponse);
+            }
+            catch (TaskCanceledException ex)
+            {
+                // Timeout
+                clientResponse.Status = HttpStatusCode.RequestTimeout;
+                clientResponse.Message = "Request timed out";
+                clientResponse.Data = ex.Message;
+
+                return StatusCode(StatusCodes.Status408RequestTimeout, clientResponse);
+            }
+            catch (Exception ex)
+            {
+                // Any unexpected error
+                clientResponse.Status = HttpStatusCode.InternalServerError;
+                clientResponse.Message = "Something went wrong";
+                clientResponse.Data = ex.Message;
+
+                return StatusCode(StatusCodes.Status500InternalServerError, clientResponse);
+            }
         }
+
 
 
     }

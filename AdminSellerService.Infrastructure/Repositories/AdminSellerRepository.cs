@@ -47,15 +47,35 @@ namespace AdminSellerService.Infrastructure.Repositories
             }
         }
 
-        public async Task<int> InsertOrganization(long createdBy)
+        public async Task<int> InsertOrganization(InsertOrganizationRequest request)
         {
             try
             {
-                //var idString = string.Join(",", ids);
+                // Map DTO properties to stored-proc parameters (Dapper will match by name)
+                var parameters = new
+                {
+                    Name = request.Name,
+                    Code = request.Code,
+                    Description = request.Description,
+                    LogoPath = request.LogoPath,
+                    PrimaryEmail = request.PrimaryEmail,
+                    SecondaryEmail = request.SecondaryEmail,
+                    PrimaryPhone = request.PrimaryPhone,
+                    SecondaryPhone = request.SecondaryPhone,
+                    Website = request.Website,
+                    AddressLine1 = request.AddressLine1,
+                    AddressLine2 = request.AddressLine2,
+                    FK_CountryID = request.FK_CountryID,
+                    FK_StateID = request.FK_StateID,
+                    FK_CityID = request.FK_CityID,
+                    ZipCode = request.ZipCode,
+                    IsActive = request.IsActive,
+                    CreatedBy = request.CreatedBy
+                };
 
                 var result = await _db.ExecuteAsync(
                     "[organization].[sp_InsertOrganization]",
-                    //new { Ids = idString, DeletedBy = createdBy },
+                    parameters,
                     commandType: CommandType.StoredProcedure
                 );
 
@@ -63,10 +83,10 @@ namespace AdminSellerService.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                // Any other unexpected errors
-                throw new Exception($"Unexpected error occurred while deleting organizations: {ex.Message}", ex);
+                throw new Exception($"Unexpected error occurred while inserting organization: {ex.Message}", ex);
             }
         }
+
 
     }
 }
