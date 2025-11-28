@@ -198,7 +198,7 @@ namespace RealBuildPOC.Server.Controllers
                 var client = _httpClientFactory.CreateClient("AdminSellerService");
 
                 var response = await client.PostAsJsonAsync(
-                    $"api/AdminSeller/InsertOrganization",
+                    $"api/AdminSeller/UpdateOrganization",
                     request
                 );
 
