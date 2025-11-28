@@ -16,10 +16,10 @@ namespace AdminSellerService.Api.Controllers
         }
 
 
-        [HttpGet("GetAllOrganization/{id}")]
-        public async Task<IActionResult> GetAllOrganization(int id)
+        [HttpGet("GetOrganizationDetails/{id}")]
+        public async Task<IActionResult> GetOrganizationDetails(int id)
         {
-            var adminseller = await _service.GetAllOrganization(id);
+            var adminseller = await _service.GetOrganizationDetails(id);
             if (adminseller == null) return NotFound();
             return Ok(adminseller);
         }

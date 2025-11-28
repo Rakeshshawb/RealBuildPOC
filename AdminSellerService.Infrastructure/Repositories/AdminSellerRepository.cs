@@ -15,15 +15,15 @@ namespace AdminSellerService.Infrastructure.Repositories
         }
 
 
-        public async Task<IEnumerable<AdminSeller>> GetAllOrganization(long id)
+        public async Task<IEnumerable<OrganizationDetails>> GetOrganizationDetails(long id)
         {
-            var AdminSeller = await _db.QueryAsync<AdminSeller>(
+            var OrganizationDetails = await _db.QueryAsync<OrganizationDetails>(
                 "[organization].[sp_GetOrganizations]",
                new { ID = id == 0 ? (long?)null : id },
                 commandType: CommandType.StoredProcedure
             );
 
-            return AdminSeller;
+            return OrganizationDetails;
         }
 
         public async Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy)
@@ -116,7 +116,7 @@ namespace AdminSellerService.Infrastructure.Repositories
                 // Map DTO properties to stored-proc parameters (Dapper will match by name)
                 var parameters = new
                 {
-                    ID = request.ID,
+                    // Organization
                     Name = request.Name,
                     Code = request.Code,
                     Description = request.Description,
@@ -133,7 +133,28 @@ namespace AdminSellerService.Infrastructure.Repositories
                     FK_CityID = request.FK_CityID,
                     ZipCode = request.ZipCode,
                     IsActive = request.IsActive,
-                    UpdatedBy = request.UpdatedBy
+                    CreatedBy = request.CreatedBy,
+
+                    // Business Details
+                    BankName = request.BankName,
+                    BankAccountNumber = request.BankAccountNumber,
+                    BankIFSC = request.BankIFSC,
+                    BankMICR = request.BankMICR,
+                    BankBranch = request.BankBranch,
+                    DocumentPath = request.DocumentPath,
+
+                    // Statutory Details
+                    GSTNumber = request.GSTNumber,
+                    GSTPath = request.GSTPath,
+                    PANNumber = request.PANNumber,
+                    PANPath = request.PANPath,
+                    TANNumber = request.TANNumber,
+                    TANPath = request.TANPath,
+
+                    // User Details
+                    UserEmail = request.UserEmail,
+                    UserPhone = request.UserPhone,
+                    PasswordHash = request.PasswordHash
                 };
 
                 var result = await _db.ExecuteAsync(

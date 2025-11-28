@@ -18,7 +18,7 @@ namespace RealBuildPOC.Server.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var client = _httpClientFactory.CreateClient("AdminSellerService");
-            var response = await client.GetAsync($"api/AdminSeller/GetAllOrganization/{id}");
+            var response = await client.GetAsync($"api/AdminSeller/GetOrganizationDetails/{id}");
 
             if (!response.IsSuccessStatusCode)
                 return StatusCode((int)response.StatusCode);
