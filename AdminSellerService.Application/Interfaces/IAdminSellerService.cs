@@ -10,5 +10,7 @@ namespace AdminSellerService.Application.Interfaces
 
         Task<int> InsertOrganization(InsertOrganizationRequest request);
 
+        Task<int> UpdateOrganization(UpdateOrganizationRequest request);
+
     }
 }

@@ -44,5 +44,16 @@ namespace AdminSellerService.Api.Controllers
             return Ok("Inserted successfully");
         }
 
+
+        [HttpPost("UpdateOrganization")]
+        public async Task<IActionResult> Update([FromBody] InsertOrganizationRequest request)
+        {
+            var result = await _service.InsertOrganization(request);
+
+            if (result == 0)
+                return BadRequest("Update failed");
+
+            return Ok("Updated successfully");
+        }
     }
 }

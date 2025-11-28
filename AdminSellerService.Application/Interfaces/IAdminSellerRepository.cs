@@ -10,5 +10,7 @@ namespace AdminSellerService.Application.Interfaces
         Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy);
 
         Task<int> InsertOrganization(InsertOrganizationRequest request);
+
+        Task<int> UpdateOrganization(UpdateOrganizationRequest request);
     }
 }

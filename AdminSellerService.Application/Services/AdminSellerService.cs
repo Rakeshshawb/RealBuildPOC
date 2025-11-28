@@ -63,5 +63,13 @@ namespace AdminSellerService.Application.Services
             return result; // return inserted row count or new ID
         }
 
+
+        public async Task<int> UpdateOrganization(UpdateOrganizationRequest request)
+        {
+            // Call repository to insert data
+            var result = await _repo.UpdateOrganization(request);
+
+            return result; // return inserted row count or new ID
+        }
     }
 }

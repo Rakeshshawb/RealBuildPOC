@@ -45,17 +45,26 @@ namespace UserService.Infrastructure.Repositories
         public async Task<long> CreateUserAsync(User user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@FullName", user.FullName);
-            parameters.Add("@Email", user.Email);
-            parameters.Add("@PasswordHash", user.PasswordHash);
-            parameters.Add("@NewId", dbType: DbType.Int64, direction: ParameterDirection.Output);
+            try
+            {
+                
+                parameters.Add("@FullName", user.FullName);
+                parameters.Add("@Email", user.Email);
+                parameters.Add("@PasswordHash", user.PasswordHash);
+                parameters.Add("@NewId", dbType: DbType.Int64, direction: ParameterDirection.Output);
 
-            await _db.ExecuteAsync(
-                "[dbo].[sp_CreateDummyUser]",
-                parameters,
-                commandType: CommandType.StoredProcedure
-            );
+                await _db.ExecuteAsync(
+                    "[dbo].[sp_CreateDummyUser]",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
 
+               
+            }
+            catch  (Exception ex)
+            {
+                var msg = ex.Message;
+            }
             return parameters.Get<long>("@NewId");
         }
     }

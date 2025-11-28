@@ -87,6 +87,46 @@ namespace AdminSellerService.Infrastructure.Repositories
             }
         }
 
+        public async Task<int> UpdateOrganization(UpdateOrganizationRequest request)
+        {
+            try
+            {
+                // Map DTO properties to stored-proc parameters (Dapper will match by name)
+                var parameters = new
+                {
+                    ID = request.ID,
+                    Name = request.Name,
+                    Code = request.Code,
+                    Description = request.Description,
+                    LogoPath = request.LogoPath,
+                    PrimaryEmail = request.PrimaryEmail,
+                    SecondaryEmail = request.SecondaryEmail,
+                    PrimaryPhone = request.PrimaryPhone,
+                    SecondaryPhone = request.SecondaryPhone,
+                    Website = request.Website,
+                    AddressLine1 = request.AddressLine1,
+                    AddressLine2 = request.AddressLine2,
+                    FK_CountryID = request.FK_CountryID,
+                    FK_StateID = request.FK_StateID,
+                    FK_CityID = request.FK_CityID,
+                    ZipCode = request.ZipCode,
+                    IsActive = request.IsActive,
+                    UpdatedBy = request.UpdatedBy
+                };
+
+                var result = await _db.ExecuteAsync(
+                    "[organization].[sp_UpdateOrganization]",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return result; // number of rows affected
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unexpected error occurred while updating organization: {ex.Message}", ex);
+            }
+        }
 
     }
 }
