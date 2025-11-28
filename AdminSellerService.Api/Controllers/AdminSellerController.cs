@@ -46,9 +46,9 @@ namespace AdminSellerService.Api.Controllers
 
 
         [HttpPost("UpdateOrganization")]
-        public async Task<IActionResult> Update([FromBody] InsertOrganizationRequest request)
+        public async Task<IActionResult> Update([FromBody] UpdateOrganizationRequest request)
         {
-            var result = await _service.InsertOrganization(request);
+            var result = await _service.UpdateOrganization(request);
 
             if (result == 0)
                 return BadRequest("Update failed");
