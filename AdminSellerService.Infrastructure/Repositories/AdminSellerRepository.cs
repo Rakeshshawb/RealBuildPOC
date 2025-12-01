@@ -15,15 +15,15 @@ namespace AdminSellerService.Infrastructure.Repositories
         }
 
 
-        public async Task<IEnumerable<AdminSeller>> GetAllOrganization(long id)
+        public async Task<IEnumerable<OrganizationDetails>> GetOrganizationDetails(long id)
         {
-            var AdminSeller = await _db.QueryAsync<AdminSeller>(
+            var OrganizationDetails = await _db.QueryAsync<OrganizationDetails>(
                 "[organization].[sp_GetOrganizations]",
                new { ID = id == 0 ? (long?)null : id },
                 commandType: CommandType.StoredProcedure
             );
 
-            return AdminSeller;
+            return OrganizationDetails;
         }
 
         public async Task<int> SoftDeleteOrganizations(IEnumerable<long> ids, long deletedBy)
@@ -54,6 +54,7 @@ namespace AdminSellerService.Infrastructure.Repositories
                 // Map DTO properties to stored-proc parameters (Dapper will match by name)
                 var parameters = new
                 {
+                    // Organization
                     Name = request.Name,
                     Code = request.Code,
                     Description = request.Description,
@@ -70,7 +71,28 @@ namespace AdminSellerService.Infrastructure.Repositories
                     FK_CityID = request.FK_CityID,
                     ZipCode = request.ZipCode,
                     IsActive = request.IsActive,
-                    CreatedBy = request.CreatedBy
+                    CreatedBy = request.CreatedBy,
+
+                    // Business Details
+                    BankName = request.BankName,
+                    BankAccountNumber = request.BankAccountNumber,
+                    BankIFSC = request.BankIFSC,
+                    BankMICR = request.BankMICR,
+                    BankBranch = request.BankBranch,
+                    DocumentPath = request.DocumentPath,
+
+                    // Statutory Details
+                    GSTNumber = request.GSTNumber,
+                    GSTPath = request.GSTPath,
+                    PANNumber = request.PANNumber,
+                    PANPath = request.PANPath,
+                    TANNumber = request.TANNumber,
+                    TANPath = request.TANPath,
+
+                    // User Details
+                    UserEmail = request.UserEmail,
+                    UserPhone = request.UserPhone,
+                    PasswordHash = request.PasswordHash
                 };
 
                 var result = await _db.ExecuteAsync(
@@ -87,6 +109,67 @@ namespace AdminSellerService.Infrastructure.Repositories
             }
         }
 
+        public async Task<int> UpdateOrganization(UpdateOrganizationRequest request)
+        {
+            try
+            {
+                // Map DTO properties to stored-proc parameters (Dapper will match by name)
+                var parameters = new
+                {
+                    // Organization
+                    Name = request.Name,
+                    Code = request.Code,
+                    Description = request.Description,
+                    LogoPath = request.LogoPath,
+                    PrimaryEmail = request.PrimaryEmail,
+                    SecondaryEmail = request.SecondaryEmail,
+                    PrimaryPhone = request.PrimaryPhone,
+                    SecondaryPhone = request.SecondaryPhone,
+                    Website = request.Website,
+                    AddressLine1 = request.AddressLine1,
+                    AddressLine2 = request.AddressLine2,
+                    FK_CountryID = request.FK_CountryID,
+                    FK_StateID = request.FK_StateID,
+                    FK_CityID = request.FK_CityID,
+                    ZipCode = request.ZipCode,
+                    IsActive = request.IsActive,
+                    CreatedBy = request.CreatedBy,
+
+                    // Business Details
+                    BankName = request.BankName,
+                    BankAccountNumber = request.BankAccountNumber,
+                    BankIFSC = request.BankIFSC,
+                    BankMICR = request.BankMICR,
+                    BankBranch = request.BankBranch,
+                    DocumentPath = request.DocumentPath,
+
+                    // Statutory Details
+                    GSTNumber = request.GSTNumber,
+                    GSTPath = request.GSTPath,
+                    PANNumber = request.PANNumber,
+                    PANPath = request.PANPath,
+                    TANNumber = request.TANNumber,
+                    TANPath = request.TANPath,
+
+                    // User Details
+                    UserEmail = request.UserEmail,
+                    UserPhone = request.UserPhone,
+                    PasswordHash = request.PasswordHash
+                };
+
+                var result = await _db.ExecuteAsync(
+                    "[organization].[sp_UpdateOrganization]",
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return result; // number of rows affected
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unexpected error occurred while updating organization: {ex.Message}", ex);
+            }
+        }
 
     }
 }

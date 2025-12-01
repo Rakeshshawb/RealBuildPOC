@@ -16,10 +16,10 @@ namespace AdminSellerService.Api.Controllers
         }
 
 
-        [HttpGet("GetAllOrganization/{id}")]
-        public async Task<IActionResult> GetAllOrganization(int id)
+        [HttpGet("GetOrganizationDetails/{id}")]
+        public async Task<IActionResult> GetOrganizationDetails(int id)
         {
-            var adminseller = await _service.GetAllOrganization(id);
+            var adminseller = await _service.GetOrganizationDetails(id);
             if (adminseller == null) return NotFound();
             return Ok(adminseller);
         }
@@ -44,5 +44,16 @@ namespace AdminSellerService.Api.Controllers
             return Ok("Inserted successfully");
         }
 
+
+        [HttpPost("UpdateOrganization")]
+        public async Task<IActionResult> Update([FromBody] UpdateOrganizationRequest request)
+        {
+            var result = await _service.UpdateOrganization(request);
+
+            if (result == 0)
+                return BadRequest("Update failed");
+
+            return Ok("Updated successfully");
+        }
     }
 }
